@@ -66,6 +66,7 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 				System.out.println("1 - Cadastrar contato");
 				System.out.println("2 - Ver Agenda");
 				System.out.println("3 - Atualizar");
+				System.out.println("4 - Exibir Agenda em Ordem Alfabetica");
 				System.out.println("\nDigite a opçao desejada:");
 
 				opc = sc.nextInt();
@@ -106,6 +107,10 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 					}
 
 					lista.print();
+					break;
+				case 4:
+					ListaOrdenada<?> list = new ListaOrdenada<>();
+					list.print();
 					break;
 				case 0:
 					System.exit(0);

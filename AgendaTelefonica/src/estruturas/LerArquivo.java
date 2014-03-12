@@ -9,8 +9,8 @@ import java.io.Writer;
 import java.util.Scanner;
 
 public class LerArquivo {
-	public static void main(String[] args) {
 
+	public void LerArq() {
 		try {
 			String nome, telefone;
 			Scanner sc = new Scanner(System.in);
