@@ -10,10 +10,17 @@ public class ListaEncadeada<T extends Comparable<T>> {
 	private Nodo<T> head;
 	private Nodo<T> tail;
 
+	/**
+	 * 
+	 * @return o nodo 'cabeca' da lista
+	 */
 	public Nodo<T> getHead() {
 		return head;
 	}
 
+	/**
+	 * Exibe os nodos validos
+	 */
 	public void print() {
 		Nodo<?> nodo = head;
 		do {
@@ -22,6 +29,10 @@ public class ListaEncadeada<T extends Comparable<T>> {
 		} while (nodo != null);
 	}
 
+	/**
+	 * 
+	 * @param novo - insere nodo novo 
+	 */
 	public void insert(Nodo<T> novo) {
 		novo.setNext(head);
 		head = novo;
@@ -30,6 +41,11 @@ public class ListaEncadeada<T extends Comparable<T>> {
 			tail = head;
 	}
 
+	/**
+	 * 
+	 * @param novo - insere nodo novo
+	 * @param anterior - entrada do nodo anterior
+	 */
 	public void insert(Nodo<T> novo, Nodo<T> anterior) {
 		if (anterior == tail) {
 			tail.setNext((Nodo<T>) novo);
@@ -40,12 +56,19 @@ public class ListaEncadeada<T extends Comparable<T>> {
 		}
 	}
 
+	/**
+	 * 
+	 * @param novo - insere o nodo no final da lista
+	 */
 	public void append(Nodo<T> novo) {
 		tail.setNext(novo);
 		tail = novo;
 	}
 
-	public static void main(String[] args) {
+	/**
+	 * realiza leituras do teclado, grava e le os contatos do arquivo 'registros.txt'
+	 */
+	public void lista() {
 		ListaEncadeada<String> lista = new ListaEncadeada<String>();
 
 		try {

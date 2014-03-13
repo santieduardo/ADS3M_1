@@ -10,6 +10,11 @@ import java.util.Scanner;
 
 public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 
+	/**
+	 * 
+	 * @param novo - insere um novo nodo
+	 * @return - retorna o nodo anterior
+	 */
 	private Nodo<T> findBefore(Nodo<T> novo) {
 		Nodo<T> atual = getHead();
 		Nodo<T> anterior = null;
@@ -29,6 +34,9 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 		return anterior;
 	}
 
+	/**
+	 * @param novo - insere um novo nodo na lista 
+	 */
 	@Override
 	public void insert(Nodo<T> novo) {
 		Nodo<T> anterior = findBefore(novo);
@@ -39,6 +47,11 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 		}
 	}
 
+	/**
+	 * 
+	 * @param novo - insere nodo novo
+	 * @param anterior - entrada do nodo anterior
+	 */
 	@Override
 	public void insert(Nodo<T> novo, Nodo<T> anterior) {
 		insert(novo);
@@ -48,7 +61,25 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 	public void append(Nodo<T> novo) {
 		insert(novo);
 	}
+	
+	/**
+	 * 
+	 * @return imprime o menu para a interacao com o usuario
+	 */
+	public static String imprimirMenu(){
+		return "\n----- Agenda Telefonica -----" +
+				"\n1 - Cadastrar contato"+
+				"\n2 - Ver Agenda" + 
+				"\n3 - Atualizar" +
+				"\n4 - Exibir Agenda em Ordem Alfabetica" +
+				"\n5 - Buscar Contato" +
+				"\n0 - Sair";
+	}
 
+	/**
+	 * 
+	 * interacao com o usuario
+	 */
 	public static void main(String[] args) {
 		ListaOrdenada<String> lista = new ListaOrdenada<String>();
 
@@ -61,12 +92,8 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 				String telefone;
 				Scanner sc = new Scanner(System.in);
 				Writer fileWriter = new FileWriter("registros.txt", true);
-				int opc = -1;
-				System.out.println("\n----- Agenda Telefonica -----");
-				System.out.println("1 - Cadastrar contato");
-				System.out.println("2 - Ver Agenda");
-				System.out.println("3 - Atualizar");
-				System.out.println("4 - Exibir Agenda em Ordem Alfabetica");
+				int opc = 0;
+				System.out.println(imprimirMenu());
 				System.out.println("\nDigite a opçao desejada:");
 
 				opc = sc.nextInt();
@@ -82,7 +109,7 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 
 					System.out.println("Digite o telefone: ");
 					telefone = sc.next();
-					// lista.insert(new Nodo<String>(telefone));
+					
 					lista.insert(new Nodo<String>(telefone));
 					fileWriter.write(telefone);
 					fileWriter.append(System.getProperty("line.separator"));
@@ -109,15 +136,21 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 					lista.print();
 					break;
 				case 4:
+					//TODO implementar
 					ListaOrdenada<?> list = new ListaOrdenada<>();
 					list.print();
 					break;
+				case 5:
+					System.out.println("Digite o nome do contato:");
+					//TODO implementar
+					break;
 				case 0:
+					System.out.println("----- FIM DO PROGRAMA -----");
 					System.exit(0);
 					break;
 
 				default:
-					System.out.println("Opcao nao existe");
+					System.out.println("----- OPCAO INEXISTENTE -----");
 					break;
 				}
 
