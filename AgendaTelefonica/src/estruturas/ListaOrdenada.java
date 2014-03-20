@@ -1,6 +1,7 @@
 package estruturas;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -12,7 +13,8 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 
 	/**
 	 * 
-	 * @param novo - insere um novo nodo
+	 * @param novo
+	 *            - insere um novo nodo
 	 * @return - retorna o nodo anterior
 	 */
 	private Nodo<T> findBefore(Nodo<T> novo) {
@@ -35,7 +37,8 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 	}
 
 	/**
-	 * @param novo - insere um novo nodo na lista 
+	 * @param novo
+	 *            - insere um novo nodo na lista
 	 */
 	@Override
 	public void insert(Nodo<T> novo) {
@@ -49,8 +52,10 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 
 	/**
 	 * 
-	 * @param novo - insere nodo novo
-	 * @param anterior - entrada do nodo anterior
+	 * @param novo
+	 *            - insere nodo novo
+	 * @param anterior
+	 *            - entrada do nodo anterior
 	 */
 	@Override
 	public void insert(Nodo<T> novo, Nodo<T> anterior) {
@@ -61,19 +66,47 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 	public void append(Nodo<T> novo) {
 		insert(novo);
 	}
-	
+
 	/**
 	 * 
 	 * @return imprime o menu para a interacao com o usuario
 	 */
-	public static String imprimirMenu(){
-		return "\n----- Agenda Telefonica -----" +
-				"\n1 - Cadastrar contato"+
-				"\n2 - Ver Agenda" + 
-				"\n3 - Atualizar" +
-				"\n4 - Exibir Agenda em Ordem Alfabetica" +
-				"\n5 - Buscar Contato" +
-				"\n0 - Sair";
+	public static String imprimirMenu() {
+		return "\n----- Agenda Telefonica -----" + "\n1 - Cadastrar contato"
+				+ "\n2 - Ver Agenda" + "\n3 - Atualizar"
+				+ "\n4 - Exibir Agenda em Ordem Alfabetica"
+				+ "\n5 - Buscar Contato" + "\n0 - Sair";
+	}
+
+	/**
+	 * verifica no arquivo registro.txr se existe um contato com o nome inserido
+	 * pelo usuario, caso exista, exite o nome do contato na tela
+	 * 
+	 * @throws IOException
+	 */
+	public static void pesquisarContatos() throws IOException {
+		Scanner sc = new Scanner(System.in);
+		Reader fileReader = new FileReader("registros.txt");
+		BufferedReader br = new BufferedReader(fileReader);
+		String registros = null;
+
+		System.out.println("Digite o nome");
+		String digita = sc.next();
+
+		while ((registros = br.readLine()) != null) {
+
+			if (registros.equalsIgnoreCase(digita)) {
+				System.out.println("Contatos encontrados: " + registros);
+				System.out.println("Buscar mais? (digite: sim)");
+				digita = sc.next().toUpperCase();
+
+				if (digita.equals("SIM")) {
+					pesquisarContatos();
+				}
+
+			}
+
+		}
 	}
 
 	/**
@@ -109,7 +142,7 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 
 					System.out.println("Digite o telefone: ");
 					telefone = sc.next();
-					
+
 					lista.insert(new Nodo<String>(telefone));
 					fileWriter.write(telefone);
 					fileWriter.append(System.getProperty("line.separator"));
@@ -136,13 +169,12 @@ public class ListaOrdenada<T extends Comparable<T>> extends ListaEncadeada<T> {
 					lista.print();
 					break;
 				case 4:
-					//TODO implementar
-					ListaOrdenada<?> list = new ListaOrdenada<>();
-					list.print();
+					// TODO implementar
+
 					break;
 				case 5:
 					System.out.println("Digite o nome do contato:");
-					//TODO implementar
+					pesquisarContatos();
 					break;
 				case 0:
 					System.out.println("----- FIM DO PROGRAMA -----");
