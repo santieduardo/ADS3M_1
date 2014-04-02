@@ -9,19 +9,20 @@ public class Jogo {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		Tabuleiro tab = new Tabuleiro();
-		Controle ctrl = new Controle();
+		Tabuleiro tabuleiro = new Tabuleiro();
+		Controle controle = new Controle();
 		Help help = new Help();
 		
 		do{
 		System.out.println("----- BATALHA NAVAL -----");
-		tab.gerarTabuleiro();
+		System.out.print("        A       B       C       D       E       F       G       H       I       J");
+		tabuleiro.gerarTabuleiro();
 		
 		System.out.println(help.imprimirComandos());
 		int cmd = sc.nextInt();
-		ctrl.converterCMD(cmd);
+		controle.converterCMD(cmd);
 		
-		} while(!ctrl.isGameOver());
+		} while(!controle.isGameOver());
 		
 		
 		

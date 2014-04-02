@@ -12,7 +12,7 @@ public class Controle {
 		switch (cmd) {
 		case 1:
 			System.out.println("Opcao ATIRAR");
-			//atirar();
+			atirar();
 			break;
 		case 9:
 			System.out.println("VOCE ABANDONOU O JOGO");
@@ -22,6 +22,10 @@ public class Controle {
 			System.err.println("OPS !\nCOMANDO INVALIDO !!!");
 			break;
 		}
+	}
+	
+	public void atirar(){
+		
 	}
 	
 	private void setPontos(int valor){
