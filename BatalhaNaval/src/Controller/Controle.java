@@ -4,10 +4,18 @@ public class Controle {
 
 	private int pontos;
 
+	/**
+	 * constroi o jogo e ja inicia os pontos para o jogador
+	 */
 	public Controle() {
-		this.pontos = 0;
+		this.pontos = 15;
 	}
 
+	/**
+	 * 
+	 * @param cmd - colina inserida
+	 * @return retorna a coordenada inserida pelo usuario convertida para ser inserida na matriz
+	 */
 	public int escolherColuna(String cmd) {
 		int coluna = 0;
 
@@ -49,19 +57,32 @@ public class Controle {
 		return coluna;
 	}
 
+	
 	public void atirar(int linha, int coluna) {
 		System.out.println("Linha:" + linha);
 		System.out.println("Coluna:" + coluna);
 	}
 
+	/**
+	 * define os pontos para o jogador
+	 * @param valor - novo valor para o jogo
+	 */
 	private void setPontos(int valor) {
-		pontos = pontos + valor;
+		this.pontos = valor;
 	}
 
+	/**
+	 * 
+	 * @return retorna os pontos atuais para o jogador
+	 */
 	public int getPontos() {
 		return pontos;
 	}
 
+	/**
+	 * 
+	 * @return retorna se o usuario perdeu o jogo ou nao
+	 */
 	public boolean isGameOver() {
 		if (getPontos() == 0) {
 			return true;
