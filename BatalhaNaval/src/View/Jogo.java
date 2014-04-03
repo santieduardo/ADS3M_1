@@ -20,7 +20,7 @@ public class Jogo {
 		
 		System.out.println(help.imprimirComandos());
 		int cmd = sc.nextInt();
-		controle.converterCMD(cmd);
+		escolherCMD(cmd);
 		
 		} while(!controle.isGameOver());
 		
@@ -28,6 +28,32 @@ public class Jogo {
 		
 		
 		
+	}
+
+	private static void escolherCMD(int cmd) {
+		Scanner sc = new Scanner(System.in);
+		Controle ctrl = new Controle();
+		
+		switch (cmd) {
+			case 1:
+				
+				System.out.println("Opcao ATIRAR");
+				System.out.println("Digite a linha:");
+				int linha = sc.nextInt();
+				System.out.println("Digite a coluna:");
+				String conl = sc.next();
+				int coluna = ctrl.escolherColuna(conl);
+				
+				ctrl.atirar(linha, coluna);
+				
+			case 9:
+				System.out.println("VOCE ABANDONOU O JOGO");
+				System.exit(0);
+				break;
+			default:
+				System.err.println("OPS !\nCOMANDO INVALIDO !!!");
+				break;
+			}		
 	}
 
 }
