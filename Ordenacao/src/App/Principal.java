@@ -2,6 +2,7 @@ package App;
 
 import java.util.Scanner;
 
+import Algoritmos.BubbleSort;
 import Algoritmos.HeapSort;
 
 public class Principal {
@@ -9,6 +10,7 @@ public class Principal {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		HeapSort heap = new HeapSort();
+		BubbleSort bubble = new BubbleSort();
 		int cmd;
 		
 		System.out.println("----- Algorítmos de Ordenação -----");
@@ -23,7 +25,7 @@ public class Principal {
 			break;
 			
 		case 2:
-			//TODO
+			bubble.rodarBubble();
 			break;
 			
 		case 3:
